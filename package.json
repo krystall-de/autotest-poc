@@ -2,9 +2,19 @@
   "name": "@autotest-poc/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "docker:up": "bash -c 'docker compose -p ${PROJECT_NAME} -f docker/docker-compose.${ENV,,}.yml up -d'",
+    "docker:down": "bash -c 'docker compose -p ${PROJECT_NAME} -f docker/docker-compose.${ENV,,}.yml down'",
+    "db:gen-migrate": "bash -c 'NAME=${*:-migration}; npx prisma migrate dev --name \"$NAME\"' --",
+    "db:migrate": "npx prisma migrate deploy",
+    "db:seed": "npx prisma db seed",
+    "db:reset": "npx prisma migrate reset"
+  },
   "private": true,
   "dependencies": {
+    "@prisma/client": "^6.19.0",
+    "pg": "^8.16.3",
+    "prisma": "^6.19.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "6.29.0"
@@ -44,6 +54,7 @@
     "nx": "22.0.3",
     "prettier": "^2.6.2",
     "tslib": "^2.3.0",
+    "tsx": "^4.20.6",
     "typescript": "~5.9.2",
     "typescript-eslint": "^8.40.0",
     "vite": "^7.0.0",

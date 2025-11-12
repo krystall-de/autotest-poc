@@ -38,11 +38,21 @@ testem.log
 .DS_Store
 Thumbs.db
 
+# Environment variables with dotenv
+# Ignore all .env files except sample files
+.env*
+!.env*.sample
+
+# Nx
 .nx/cache
 .nx/workspace-data
 .cursor/rules/nx-rules.mdc
 .github/instructions/nx.instructions.md
 
+# Vite/Vitest
 vite.config.*.timestamp*
 vitest.config.*.timestamp*
 test-output
+
+# Prisma
+/generated/prisma
