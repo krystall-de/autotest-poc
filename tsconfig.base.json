@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "composite": true,
     "declarationMap": true,
     "emitDeclarationOnly": true,
@@ -16,6 +17,9 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "es2022",
-    "customConditions": ["@autotest-poc/source"]
+    "customConditions": ["@autotest-poc/source"],
+    "paths": {
+      "@autotest-poc/prisma-client": ["libs/prisma-client/src/index.ts"]
+    }
   }
 }

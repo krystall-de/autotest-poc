@@ -29,7 +29,8 @@
           "buildDepsName": "build-deps",
           "watchDepsName": "watch-deps"
         }
-      }
+      },
+      "exclude": ["libs/prisma-client/*"]
     },
     {
       "plugin": "@nx/eslint/plugin",
@@ -58,6 +59,26 @@
         "openTargetName": "open-cypress",
         "componentTestingTargetName": "component-test",
         "ciTargetName": "e2e-ci"
+      }
+    },
+    {
+      "plugin": "@nx/webpack/plugin",
+      "options": {
+        "buildTargetName": "build",
+        "serveTargetName": "serve",
+        "previewTargetName": "preview",
+        "buildDepsTargetName": "build-deps",
+        "watchDepsTargetName": "watch-deps",
+        "serveStaticTargetName": "serve-static"
+      }
+    },
+    {
+      "plugin": "@nx/js/typescript",
+      "include": ["libs/prisma-client/*"],
+      "options": {
+        "typecheck": {
+          "targetName": "typecheck"
+        }
       }
     }
   ],

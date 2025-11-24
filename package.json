@@ -5,29 +5,42 @@
   "scripts": {
     "docker:up": "bash -c 'docker compose -p ${PROJECT_NAME} -f docker/docker-compose.${ENV,,}.yml up -d'",
     "docker:down": "bash -c 'docker compose -p ${PROJECT_NAME} -f docker/docker-compose.${ENV,,}.yml down'",
-    "db:gen-migrate": "bash -c 'NAME=${*:-migration}; npx prisma migrate dev --name \"$NAME\"' --",
-    "db:migrate": "npx prisma migrate deploy",
-    "db:seed": "npx prisma db seed",
-    "db:reset": "npx prisma migrate reset"
+    "db:gen-client": "yarn prisma generate",
+    "db:gen-migrate": "bash -c 'NAME=${*:-migration}; yarn prisma migrate dev --name \"$NAME\"' --",
+    "db:migrate": "yarn prisma migrate deploy",
+    "db:seed": "yarn prisma db seed",
+    "db:reset": "yarn prisma migrate reset",
+    "postinstall": "yarn db:gen-client"
   },
   "private": true,
   "dependencies": {
+    "@nestjs/common": "^11.0.0",
+    "@nestjs/core": "^11.0.0",
+    "@nestjs/platform-express": "^11.0.0",
     "@prisma/client": "^6.19.0",
+    "axios": "^1.6.0",
     "pg": "^8.16.3",
     "prisma": "^6.19.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-router-dom": "6.29.0"
+    "react-router-dom": "6.29.0",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^7.8.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
+    "@nestjs/schematics": "^11.0.0",
+    "@nestjs/testing": "^11.0.0",
     "@nx/cypress": "22.0.3",
     "@nx/eslint": "22.0.3",
     "@nx/eslint-plugin": "22.0.3",
     "@nx/js": "22.0.3",
+    "@nx/nest": "22.0.3",
+    "@nx/node": "22.0.3",
     "@nx/react": "22.0.3",
     "@nx/vite": "22.0.3",
     "@nx/web": "22.0.3",
+    "@nx/webpack": "22.0.3",
     "@nx/workspace": "22.0.3",
     "@swc-node/register": "~1.9.1",
     "@swc/cli": "~0.6.0",
@@ -58,9 +71,11 @@
     "typescript": "~5.9.2",
     "typescript-eslint": "^8.40.0",
     "vite": "^7.0.0",
-    "vitest": "^3.0.0"
+    "vitest": "^3.0.0",
+    "webpack-cli": "^5.1.4"
   },
   "workspaces": [
-    "apps/*"
+    "apps/*",
+    "libs/*"
   ]
 }

@@ -55,4 +55,4 @@ vitest.config.*.timestamp*
 test-output
 
 # Prisma
-/generated/prisma
+**/generated/prisma
