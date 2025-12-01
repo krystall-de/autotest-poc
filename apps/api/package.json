@@ -21,12 +21,6 @@
           }
         }
       },
-      "copy-generated": {
-        "executor": "nx:run-commands",
-        "options": {
-          "command": "cp -R libs/prisma-client/src/generated apps/api/dist/generated"
-        }
-      },
       "prune-lockfile": {
         "dependsOn": [
           "build"
@@ -66,7 +60,7 @@
         "executor": "@nx/js:node",
         "defaultConfiguration": "development",
         "dependsOn": [
-          "build", "copy-generated"
+          "build"
         ],
         "options": {
           "buildTarget": "@autotest-poc/api:build",
@@ -84,6 +78,7 @@
     }
   },
   "dependencies": {
+    "@autotest-poc/prisma-client": "workspace:*",
     "@nestjs/common": "^11.0.0",
     "@nestjs/core": "^11.0.0",
     "@nestjs/platform-express": "^11.0.0",
