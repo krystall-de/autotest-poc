@@ -74,6 +74,20 @@
             "buildTarget": "@autotest-poc/api:build:production"
           }
         }
+      },
+      "integration-test": {
+        "executor": "@nx/jest:jest",
+        "defaultConfiguration": "test",
+        "dependsOn": [
+          "build"
+        ],
+        "outputs": [
+          "{projectRoot}/integration-test/test-output/jest/coverage"
+        ],
+        "options": {
+          "jestConfig": "apps/api/integration-test/jest.config.cts",
+          "passWithNoTests": true
+        }
       }
     }
   },
@@ -87,6 +101,7 @@
     "tslib": "^2.3.0"
   },
   "devDependencies": {
-    "@nestjs/testing": "^11.0.0"
+    "@nestjs/testing": "^11.0.0",
+    "ts-node": "^10.9.2"
   }
 }

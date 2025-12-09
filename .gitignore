@@ -47,7 +47,9 @@ Thumbs.db
 # Environment variables with dotenv
 # Ignore all .env files except sample files
 .env*
+!.envrc
 !.env*.sample
+!.env.test
 
 # Nx
 .nx/cache
