@@ -23,6 +23,9 @@
   "references": [
     {
       "path": "../../libs/prisma-client/tsconfig.lib.json"
+    },
+    {
+      "path": "../../libs/api-contract/tsconfig.lib.json"
     }
   ]
 }

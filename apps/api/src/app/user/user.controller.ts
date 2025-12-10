@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { UserService } from './user.service';
-import type { CreateUserDto } from './user.dto';
+import type { CreateUserDto } from '@autotest-poc/api-contract';
 
 @Controller("users")
 export class UserController {

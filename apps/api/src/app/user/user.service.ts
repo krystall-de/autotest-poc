@@ -1,6 +1,6 @@
 import { PrismaClientService } from '@autotest-poc/prisma-client';
 import { Injectable } from '@nestjs/common';
-import { UserForCreate } from './user.types';
+import { UserForCreate } from '@autotest-poc/api-contract';
 
 @Injectable()
 export class UserService {

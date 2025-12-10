@@ -19,7 +19,8 @@
     "target": "es2022",
     "customConditions": ["@autotest-poc/source"],
     "paths": {
-      "@autotest-poc/prisma-client": ["libs/prisma-client/src/index.ts"]
+      "@autotest-poc/prisma-client": ["libs/prisma-client/src/index.ts"],
+      "@autotest-poc/api-contract": ["libs/api-contract/src/index.ts"]
     }
   }
 }
