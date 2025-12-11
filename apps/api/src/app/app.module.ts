@@ -1,11 +1,8 @@
 import { Module } from '@nestjs/common';
-import { UserService } from './user/user.service';
-import { PrismaClientModule } from '@autotest-poc/prisma-client';
-import { UserController } from './user/user.controller';
+import { UserModule } from './user/user.module';
 
 @Module({
-  imports: [PrismaClientModule],
-  controllers: [UserController],
-  providers: [UserService],
+  imports: [UserModule],
+  providers: [],
 })
 export class AppModule {}
