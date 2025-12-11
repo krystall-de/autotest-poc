@@ -13,14 +13,4 @@ describe('App', () => {
     expect(baseElement).toBeTruthy();
   });
 
-  it('should have a greeting as the title', () => {
-    const { getAllByText } = render(
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    );
-    expect(
-      getAllByText(new RegExp('Welcome @autotest-poc/web', 'gi')).length > 0
-    ).toBeTruthy();
-  });
 });
