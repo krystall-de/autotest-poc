@@ -11,8 +11,8 @@ export default defineConfig({
         production: 'npx nx run @autotest-poc/web:preview',
       },
       ciWebServerCommand: 'npx nx run @autotest-poc/web:preview',
-      ciBaseUrl: 'http://localhost:4300',
+      ciBaseUrl: `http://localhost:${process.env.WEB_PREVIEW_PORT || 4300}`,
     }),
-    baseUrl: 'http://localhost:4200',
+    baseUrl: `http://localhost:${process.env.WEB_PORT || 4200}`,
   },
 });
