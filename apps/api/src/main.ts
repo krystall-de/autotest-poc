@@ -7,9 +7,16 @@ import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app/app.module';
 import { config } from './app/config/config';
+import {
+  FastifyAdapter,
+  NestFastifyApplication,
+} from '@nestjs/platform-fastify';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestFastifyApplication>(
+    AppModule,
+    new FastifyAdapter()
+  );
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
 
@@ -25,11 +32,13 @@ async function bootstrap() {
     });
   }
 
-  const port = config.port;
-  await app.listen(port);
-  Logger.log(
-    `🚀 Application is running on: http://localhost:${port}/${globalPrefix}`
-  );
+  await app.listen({ port: config.port, host: config.host }, (err, address) => {
+    if (err) {
+      Logger.error(`Error starting server: ${err.message}`);
+      process.exit(1);
+    }
+    Logger.log(`🚀 Application is running on: ${address}`);
+  });
 }
 
 bootstrap();

@@ -26,6 +26,8 @@ RUN yarn nx run @autotest-poc/api:prune
 # Stage 2: Runtime image
 FROM node:22-alpine
 
+ENV API_HOST=0.0.0.0
+
 WORKDIR /app
 
 # Enable yarn (optional, for runtime scripts)

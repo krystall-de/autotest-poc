@@ -2,8 +2,15 @@ import { config } from './config';
 import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppModule } from '../../src/app/app.module';
-import { startDockerCompose, waitForHealthyContainer } from '../util/docker-util';
+import {
+  startDockerCompose,
+  waitForHealthyContainer,
+} from '../util/docker-util';
 import { setupDatabase } from '../util/database-util';
+import {
+  FastifyAdapter,
+  NestFastifyApplication,
+} from '@nestjs/platform-fastify';
 
 /* eslint-disable */
 
@@ -33,8 +40,11 @@ module.exports = async function () {
     imports: [AppModule],
   }).compile();
 
-  const app = moduleFixture.createNestApplication();
+  const app = moduleFixture.createNestApplication<NestFastifyApplication>(
+    new FastifyAdapter()
+  );
   await app.init();
+  await app.getHttpAdapter().getInstance().ready();
 
   globalThis.__APP__ = app;
 };
