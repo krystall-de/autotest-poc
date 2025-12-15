@@ -1,10 +1,12 @@
-export type User = {
-    id: number;
-    name: string;
-    email: string;
-}
+import z from 'zod';
+import {
+  createUserSchema,
+  updateUserSchema,
+  userSchema,
+} from './user.schema.js';
 
-export type UserForCreate = {
-    name: string;
-    email: string;
-}
+export type User = z.infer<typeof userSchema>;
+
+export type UserForCreate = z.infer<typeof createUserSchema>;
+
+export type UserForUpdate = z.infer<typeof updateUserSchema>;
