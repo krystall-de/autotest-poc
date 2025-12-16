@@ -95,6 +95,7 @@
     "@autotest-poc/api-contract": "workspace:*",
     "@autotest-poc/prisma-client": "workspace:*",
     "@nestjs/common": "^11.0.0",
+    "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.0.0",
     "@nestjs/platform-fastify": "^11.0.0",
     "@nestjs/terminus": "^11.0.0",
