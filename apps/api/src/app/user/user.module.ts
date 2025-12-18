@@ -7,5 +7,6 @@ import { PrismaClientModule } from '@autotest-poc/prisma-client';
   imports: [PrismaClientModule],
   controllers: [UserController],
   providers: [UserService],
+  exports: [UserService],
 })
 export class UserModule {}

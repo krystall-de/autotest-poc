@@ -2,7 +2,7 @@ import { INestApplication } from '@nestjs/common';
 import request from 'supertest';
 import { resetDatabase } from '../../util/database-util';
 import { PrismaClient, User } from '@autotest-poc/prisma-client';
-import { UserForCreate, UserForUpdate } from '@autotest-poc/api-contract';
+import { CreateUserInput, UpdateUserInput } from '@autotest-poc/api-contract';
 
 const prisma = new PrismaClient();
 
@@ -29,7 +29,7 @@ describe('User API', () => {
 
   describe('POST /users', () => {
     it('should create a user (success)', async () => {
-      const data: UserForCreate = {
+      const data: CreateUserInput = {
         name: 'Alice',
         email: 'alice@example.com',
       };
@@ -50,7 +50,7 @@ describe('User API', () => {
     });
 
     it('should fail to create user with invalid email (error)', async () => {
-      const data: UserForCreate = {
+      const data: CreateUserInput = {
         name: '',
         email: 'not-an-email',
       };
@@ -60,7 +60,7 @@ describe('User API', () => {
     });
 
     it('should fail to create user with duplicate email (error)', async () => {
-      const data: UserForCreate = {
+      const data: CreateUserInput = {
         name: 'Charlie',
         email: existingUser.email,
       };
@@ -76,7 +76,7 @@ describe('User API', () => {
         data: { name: 'Dave', email: 'dave@example.com' },
       });
 
-      const data: UserForUpdate = {
+      const data: UpdateUserInput = {
         id: user.id,
         name: 'Dave Updated',
         email: 'dave.updated@example.com',
@@ -101,7 +101,7 @@ describe('User API', () => {
       const user = await prisma.user.create({
         data: { name: 'Dave', email: 'dave@example.com' },
       });
-      const data: UserForUpdate = {
+      const data: UpdateUserInput = {
         id: user.id,
         name: 'Dave Updated',
         email: 'dave@example.com',

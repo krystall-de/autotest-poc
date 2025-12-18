@@ -4,7 +4,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { UserForCreate, UserForUpdate } from '@autotest-poc/api-contract';
+import { CreateUserInput, UpdateUserInput } from '@autotest-poc/api-contract';
 
 @Injectable()
 export class UserService {
@@ -15,15 +15,15 @@ export class UserService {
   }
 
   async getUserById(id: number) {
-    const user = await this.prismaService.user.findUnique({ where: { id } });
-    if (!user) throw new NotFoundException('User not found');
-    return user;
+    return this.prismaService.user.findUnique({ where: { id } });
   }
 
-  async createUser(user: UserForCreate) {
-    const userByEmail = await this.prismaService.user.findUnique({
-      where: { email: user.email },
-    });
+  async getUserByEmail(email: string) {
+    return this.prismaService.user.findUnique({ where: { email } });
+  }
+
+  async createUser(user: CreateUserInput) {
+    const userByEmail = await this.getUserByEmail(user.email);
     if (userByEmail) throw new BadRequestException('Email already exists');
 
     return this.prismaService.user.create({
@@ -31,7 +31,7 @@ export class UserService {
     });
   }
 
-  async updateUser(id: number, user: Omit<UserForUpdate, 'id'>) {
+  async updateUser(id: number, user: Omit<UpdateUserInput, 'id'>) {
     // Check existence first
     const existing = await this.prismaService.user.findUnique({
       where: { id },

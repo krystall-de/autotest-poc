@@ -7,6 +7,6 @@ import {
 
 export type User = z.infer<typeof userSchema>;
 
-export type UserForCreate = z.infer<typeof createUserSchema>;
+export type CreateUserInput = z.infer<typeof createUserSchema>;
 
-export type UserForUpdate = z.infer<typeof updateUserSchema>;
+export type UpdateUserInput = z.infer<typeof updateUserSchema>;
