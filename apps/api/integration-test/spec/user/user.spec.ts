@@ -207,8 +207,8 @@ describe('User API', () => {
       const res = await request(app.getHttpServer()).get('/users');
       expect(res.status).toBe(200);
       expect(Array.isArray(res.body)).toBe(true);
-      // Base seeded data count (1) + existingUser (1)
-      expect(res.body.length).toBe(2);
+      // Base seeded data count (1 common + 1 test) + existingUser (1)
+      expect(res.body.length).toBe(3);
     });
   });
 });

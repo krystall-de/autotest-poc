@@ -26,7 +26,12 @@ import { AuthGuard } from './guards/auth.guard';
     UserModule,
   ],
   controllers: [AuthController],
-  providers: [{ provide: APP_GUARD, useClass: AuthGuard }, AuthService],
+  providers: [
+    // Setup global guard with useExisting and provide AuthGuard explicitly to allow overriding in tests
+    { provide: APP_GUARD, useExisting: AuthGuard },
+    AuthGuard,
+    AuthService,
+  ],
   exports: [AuthService],
 })
 export class AuthModule {}

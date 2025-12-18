@@ -11,6 +11,8 @@ import {
   FastifyAdapter,
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
+import { AuthGuard } from '../..//src/app/auth/guards/auth.guard';
+import { MockAuthGuard } from '../mock/auth/auth.guard.mock';
 
 /* eslint-disable */
 
@@ -38,7 +40,10 @@ module.exports = async function () {
   console.log('Bootstrapping application...\n');
   const moduleFixture: TestingModule = await Test.createTestingModule({
     imports: [AppModule],
-  }).compile();
+  })
+    .overrideProvider(AuthGuard)
+    .useClass(MockAuthGuard)
+    .compile();
 
   const app = moduleFixture.createNestApplication<NestFastifyApplication>(
     new FastifyAdapter()
