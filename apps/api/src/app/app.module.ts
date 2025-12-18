@@ -5,6 +5,7 @@ import { HealthModule } from './health/health.module';
 import { APP_PIPE } from '@nestjs/core';
 import { ZodValidationPipe } from 'nestjs-zod';
 import config from './config/config';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import config from './config/config';
       ignoreEnvFile: true,
     }),
     HealthModule,
+    AuthModule,
     UserModule,
   ],
   providers: [
