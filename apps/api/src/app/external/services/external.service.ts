@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { ExternalHttpClient } from './client/external.http-client';
-import { ExternalAxiosClient } from './client/external.axios-client';
-import { ExternalData } from './client/external.client.types';
-import { AuthUser } from '../auth/types/auth.types';
+import { ExternalHttpClient } from '../clients/external.http-client';
+import { ExternalAxiosClient } from '../clients/external.axios-client';
+import { ExternalData } from '../clients/external.client.types';
+import { AuthUser } from '../../auth/models/auth.types';
 
 @Injectable()
 export class ExternalService {

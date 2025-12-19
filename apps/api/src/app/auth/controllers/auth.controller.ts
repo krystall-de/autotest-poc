@@ -1,9 +1,9 @@
 import { Body, Controller, Post, Get } from '@nestjs/common';
-import { AuthService } from './auth.service';
+import { AuthService } from '../services/auth.service';
 import { SignInDto } from './auth.dto';
-import { Public } from './decorators/public.decorator';
-import { CurrentUser } from './decorators/current-user.decorator';
-import type { AuthUser } from './types/auth.types';
+import { Public } from '../decorators/public.decorator';
+import { CurrentUser } from '../decorators/current-user.decorator';
+import type { AuthUser } from '../models/auth.types';
 
 @Controller('auth')
 export class AuthController {
@@ -16,7 +16,7 @@ export class AuthController {
   }
 
   @Get('me')
-  getMe(@CurrentUser() user: AuthUser) {
-    return user;
+  getMe(@CurrentUser() currUser: AuthUser) {
+    return currUser;
   }
 }

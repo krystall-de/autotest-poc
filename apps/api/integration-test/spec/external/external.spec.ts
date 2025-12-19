@@ -1,8 +1,8 @@
 import { INestApplication } from '@nestjs/common';
 import request from 'supertest';
 import { MockProxy } from 'jest-mock-extended';
-import { ExternalHttpClient } from '../../../src/app/external/client/external.http-client';
-import { ExternalAxiosClient } from '../../../src/app/external/client/external.axios-client';
+import { ExternalHttpClient } from '../../../src/app/external/clients/external.http-client';
+import { ExternalAxiosClient } from '../../../src/app/external/clients/external.axios-client';
 
 describe('External API', () => {
   let app: INestApplication;

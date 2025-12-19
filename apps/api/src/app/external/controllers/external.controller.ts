@@ -5,9 +5,9 @@ import {
   Param,
   ParseIntPipe,
 } from '@nestjs/common';
-import { ExternalService } from './external.service';
-import { CurrentUser } from '../auth/decorators/current-user.decorator';
-import type { AuthUser } from '../auth/types/auth.types';
+import { ExternalService } from '../services/external.service';
+import { CurrentUser } from '../../auth/decorators/current-user.decorator';
+import type { AuthUser } from '../../auth/models/auth.types';
 
 @Controller('external')
 export class ExternalController {

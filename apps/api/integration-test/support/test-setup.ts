@@ -1,13 +1,13 @@
 import { TestingModuleBuilder, Test } from '@nestjs/testing';
 import { AppModule } from '../../src/app/app.module';
 import { AuthGuard } from '../../src/app/auth/guards/auth.guard';
-import { ExternalHttpClient } from '../../src/app/external/client/external.http-client';
+import { ExternalHttpClient } from '../../src/app/external/clients/external.http-client';
 import { mock, MockProxy } from 'jest-mock-extended';
 import { MockAuthGuard } from '../mock/auth/auth.guard.mock';
 import { createTestApp } from '../util/nestjs-util';
 import { INestApplication } from '@nestjs/common';
 import { resetDatabase } from '../util/database-util';
-import { ExternalAxiosClient } from '../../src/app/external/client/external.axios-client';
+import { ExternalAxiosClient } from '../../src/app/external/clients/external.axios-client';
 
 declare global {
   var __TEST_APP__:

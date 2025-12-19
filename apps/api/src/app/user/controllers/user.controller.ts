@@ -9,7 +9,7 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { UserService } from './user.service';
+import { UserService } from '../services/user.service';
 import { CreateUserDto, UpdateUserDto } from '@autotest-poc/api-contract';
 
 @Controller('users')

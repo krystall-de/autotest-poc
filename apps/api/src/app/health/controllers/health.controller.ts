@@ -5,7 +5,7 @@ import {
   HealthCheckService,
   PrismaHealthIndicator,
 } from '@nestjs/terminus';
-import { Public } from '../auth/decorators/public.decorator';
+import { Public } from '../../auth/decorators/public.decorator';
 
 @Public()
 @Controller('health')
