@@ -1,6 +1,5 @@
 import { INestApplication } from '@nestjs/common';
 import request from 'supertest';
-import { resetDatabase } from '../../util/database-util';
 import { PrismaClient, User } from '@autotest-poc/prisma-client';
 import { CreateUserInput, UpdateUserInput } from '@autotest-poc/api-contract';
 
@@ -11,9 +10,11 @@ describe('User API', () => {
   let existingUser: User;
 
   beforeAll(async () => {
-    app = globalThis.__APP__;
-
-    resetDatabase();
+    const testApp = globalThis.__TEST_APP__;
+    if (!testApp) {
+      throw new Error('Test application not ready');
+    }
+    app = testApp.app;
 
     // This record is to act as an existing user, it should not be touched by tests
     existingUser = await prisma.user.create({

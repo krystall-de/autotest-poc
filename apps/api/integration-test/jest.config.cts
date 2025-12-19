@@ -14,7 +14,7 @@ export default {
   preset: '../../../jest.preset.js',
   globalSetup: '<rootDir>/support/global-setup.ts',
   globalTeardown: '<rootDir>/support/global-teardown.ts',
-  // setupFiles: ['<rootDir>/support/test-setup.ts'],
+  setupFilesAfterEnv: ['<rootDir>/support/test-setup.ts'],
   testEnvironment: 'node',
   transform: {
     '^.+\\.[tj]s$': ['@swc/jest', swcJestConfig],

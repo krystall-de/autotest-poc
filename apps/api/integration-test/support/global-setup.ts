@@ -1,28 +1,16 @@
+/* eslint-disable */
 import { config } from './config';
-import { INestApplication } from '@nestjs/common';
-import { Test, TestingModule } from '@nestjs/testing';
-import { AppModule } from '../../src/app/app.module';
 import {
   startDockerCompose,
   waitForHealthyContainer,
 } from '../util/docker-util';
 import { setupDatabase } from '../util/database-util';
-import {
-  FastifyAdapter,
-  NestFastifyApplication,
-} from '@nestjs/platform-fastify';
-import { AuthGuard } from '../..//src/app/auth/guards/auth.guard';
-import { MockAuthGuard } from '../mock/auth/auth.guard.mock';
-
-/* eslint-disable */
 
 // Hint: Use `globalThis` to pass variables to global teardown.
-declare global {
-  var __APP__: INestApplication;
-}
+// declare global {}
 
 module.exports = async function () {
-  console.log('\nSetting up...\n');
+  console.log('\nSetting up environment...\n');
 
   // Start services that the app needs to run using docker-compose
   console.log('Starting service containers...\n');
@@ -35,21 +23,4 @@ module.exports = async function () {
   // Prepare database
   console.log('Setting up database...\n');
   setupDatabase();
-
-  // Bootstrap target app as testing module
-  console.log('Bootstrapping application...\n');
-  const moduleFixture: TestingModule = await Test.createTestingModule({
-    imports: [AppModule],
-  })
-    .overrideProvider(AuthGuard)
-    .useClass(MockAuthGuard)
-    .compile();
-
-  const app = moduleFixture.createNestApplication<NestFastifyApplication>(
-    new FastifyAdapter()
-  );
-  await app.init();
-  await app.getHttpAdapter().getInstance().ready();
-
-  globalThis.__APP__ = app;
 };
